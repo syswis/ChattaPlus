@@ -1,0 +1,22 @@
+{
+  "name": "Chatta+",
+  "description": "Miglioramenti alla chat di Chatta.it",
+  "version": "0.2.5",
+  "manifest_version": 3,
+  "content_scripts": [{
+    "js": ["js/content.js"],
+    "matches": ["https://chat.chatta.it/client.aspx?room=*"],
+    "run_at": "document_start"
+  }],
+  "web_accessible_resources": [{
+    "resources": ["/js/*", "/css/*"],
+    "matches": ["<all_urls>"]
+  }],
+  "icons": {
+    "16": "/css/images/sch_icon_16.png",
+    "24": "/css/images/sch_icon_24.png",
+    "48": "/css/images/sch_icon_48.png",
+    "64": "/css/images/sch_icon_64.png",
+    "128": "/css/images/sch_icon_128.png"
+  }
+}
