@@ -19,7 +19,7 @@ window.RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSess
 
 window.ChattaPlus = {
     _appPrefix: 'sch',
-    _v: '0.2.5',
+    _v: '0.2.6',
     Settings: {
         data: {
             capsFilter: false,

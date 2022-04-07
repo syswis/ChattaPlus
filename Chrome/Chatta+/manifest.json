@@ -1,7 +1,7 @@
 {
   "name": "Chatta+",
   "description": "Miglioramenti alla chat di Chatta.it",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "manifest_version": 3,
   "content_scripts": [{
     "js": ["js/content.js"],
