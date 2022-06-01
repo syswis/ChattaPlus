@@ -30,5 +30,13 @@
             l1.media = 'all';
             (document.head || document.documentElement).appendChild(l1);
         },100);
+        setTimeout(() => {
+			var l2 = document.createElement("link");
+			l2.href = "https://unpkg.com/css.gg/icons/all.css";
+			l2.type = "text/css";
+			l2.rel = "stylesheet";
+			l2.media = "all";
+			(document.head || document.documentElement).appendChild(l2);
+		}, 100);
     };
 })();

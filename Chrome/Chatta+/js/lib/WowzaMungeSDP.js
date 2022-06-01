@@ -272,7 +272,7 @@ export function mungeSDPPublish(sdpStr, mungeData) {
               if (('vp9'.localeCompare(match) == 0) || ('vp8'.localeCompare(match) == 0) || ('h264'.localeCompare(match) == 0) ||
                 ('red'.localeCompare(match) == 0) || ('ulpfec'.localeCompare(match) == 0) || ('rtx'.localeCompare(match) == 0)) {
                 if (mungeData.videoBitrate !== undefined) {
-                  sdpStrRet += '\r\na=fmtp:' + rtpmapID[1] + ' x-google-min-bitrate=' + (mungeData.videoBitrate) + ';x-google-max-bitrate=' + (mungeData.videoBitrate);
+                  sdpStrRet += '\r\na=fmtp:' + rtpmapID[1] + ' x-google-max-bitrate=' + (mungeData.videoBitrate) + ';x-google-min-bitrate=0;x-google-start-bitrate=300';
                 }
               }
 

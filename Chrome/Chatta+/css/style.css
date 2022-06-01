@@ -31,7 +31,11 @@
     object-fit: contain;
 }
 
-.sch_videoContainer .sch_liveIndicator {
+._hidden {
+  display: none;
+}
+
+.sch_liveIndicator {
     position: absolute;
     top: 10px;
     left: 6px;
@@ -53,21 +57,23 @@
     top: 3px;
 }
 
-.sch_videoContainer .sch_videoOverlay {
+.sch_videoOverlay {
     height: 100%;
     width: 100%;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    left:0px;
     z-index: 99;
     backdrop-filter: blur(3px);
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_webcamTitle:after {
+.sch_videoOverlay .sch_webcamTitle:after {
     content: attr(data-title);
     font-size: 14px;
     color: rgba(255,255,255,0.75);
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_closeStreamButton,
+.sch_videoOverlay .sch_closeStreamButton,
 .sch_settingsWindowWrapper .sch_settingsWindow .sch_closeSettingsWindowButton
 {
     position: absolute;
@@ -90,7 +96,7 @@
     filter: none;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleAudioButton {
+.sch_videoOverlay .sch_toggleAudioButton {
     width: 48px;
     height: 48px;
     position: absolute;
@@ -101,11 +107,11 @@
     cursor:pointer;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleAudioButton._disabled {
+.sch_videoOverlay .sch_toggleAudioButton._disabled {
     background-position: 0 -48px;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleVideoButton {
+.sch_videoOverlay .sch_toggleVideoButton {
     width: 48px;
     height: 48px;
     position: absolute;
@@ -116,7 +122,7 @@
     cursor: pointer;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleVideoButton:before {
+.sch_videoOverlay .sch_toggleVideoButton:before {
     content: '';
     width: 52px;
     height: 52px;
@@ -124,19 +130,19 @@
     background: rgba(0,0,0,0.5);
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleVideoButton._disabled {
+ .sch_videoOverlay .sch_toggleVideoButton._disabled {
     background-position: -48px -48px;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleVideoButton._screenShare {
+ .sch_videoOverlay .sch_toggleVideoButton._screenShare {
     background-position: -96px 0;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_toggleVideoButton._screenShare._disabled {
+ .sch_videoOverlay .sch_toggleVideoButton._screenShare._disabled {
     background-position: -96px -48px;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_pictureInPictureButton {
+ .sch_videoOverlay .sch_pictureInPictureButton {
     position: absolute;
     bottom: 60px;
     right: calc(50% - 50px);
@@ -150,7 +156,7 @@
     text-align: center;
 }
 
-.sch_videoContainer .sch_videoOverlay .sch_pictureInPictureButton:before {
+ .sch_videoOverlay .sch_pictureInPictureButton:before {
     content: '';
     width: 24px;
     height: 24px;
@@ -158,15 +164,7 @@
     background: url('chrome-extension://__MSG_@@extension_id__/css/images/sch_icons.png');
     background-position: -96px -96px;
     display:inline-block;
-}
-
-.sch_videoContainer .sch_videoOverlay .sch_pictureInPictureButton:after {
-    content: 'Popout';
-    color: rgba(255,255,255,0.75);
-    font-size: 14px;
-    display: inline-block;
-    margin-top: 3px;
-    margin-left: 5px;
+    position: absolute;
 }
 
 .chat-settings-ChattaPlus {
@@ -553,19 +551,39 @@ div.chat-client div.chat div.chat-composer .sch_vocalContainer {
     border-radius: 10px 0 0 0;
 }
 
+div.chat-client div.chat div.chat-composer div.emoji-selector-button {
+  line-height: 30px !important;
+}
+
 div.chat-client div.chat div.chat-composer .sch_toggleVocalRecorderButton {
     position: absolute;
-    bottom: 2px;
     right: 110px;
+    bottom: 2px;
     width: 34px;
     height: 34px;
     color: #989898;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    margin-right: 2px;
     text-align: center;
     line-height: 34px;
     font-size: 24px;
     cursor: pointer;
     border-radius: 4px;
     opacity: .6;
+}
+
+div.chat-client div.chat div.chat-composer .sch_toggleVocalRecorderButton::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin: 0 auto;
+      background: url(https://chat.chatta.it/style/img/user-stream-microphone.png);
+      background-repeat: no-repeat;
+      filter: sepia(100%) saturate(0%) brightness(50%);
+      -webkit-filter: sepia(100%) saturate(0%) brightness(50%);
 }
 
 div.chat-client div.chat div.chat-composer .sch_toggleVocalRecorderButton.active,
@@ -591,7 +609,6 @@ div.chat-client div.chat div.chat-composer .sch_vocalContainer .sch_vocalSendBut
     padding: 3px 5px;
 }
 
-div.chat-client div.chat div.chat-composer .sch_toggleVocalRecorderButton:after,
 div.chat-client div.chat div.chat-composer .sch_vocalContainer .sch_toggleRecordButton:after {
     content: '';
     display: block;
@@ -602,6 +619,7 @@ div.chat-client div.chat div.chat-composer .sch_vocalContainer .sch_toggleRecord
     border-radius: 50%;
     background: darkred;
 }
+
 
 @keyframes pulse{
 	0%{
@@ -793,4 +811,17 @@ div.chat-client div.chat div.chat-composer textarea {
 
 div.chat-overlay-window {
     z-index: 99 !important;
+}
+
+div.chat-header .chat-header-button.toggle-webcams-streams-button {
+    right: 90px;
+    background-image: url(img/webcam-streams.png);
+}
+
+div.chat-overlay-window.owner.minimized .sch_videoOverlay {
+  display: none !important;
+}
+
+div.chat-composer div.emoji-selector-container div.emoji-selector-tab-buttons div.emoji-selector-tab-button {
+    width: 14.285% !important;
 }

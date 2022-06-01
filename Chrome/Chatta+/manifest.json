@@ -1,11 +1,11 @@
 {
   "name": "Chatta+",
   "description": "Miglioramenti alla chat di Chatta.it",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "manifest_version": 3,
   "content_scripts": [{
     "js": ["js/content.js"],
-    "matches": ["https://chat.chatta.it/client.aspx?room=*"],
+    "matches": ["https://chat.chatta.it/*"],
     "run_at": "document_start"
   }],
   "web_accessible_resources": [{

@@ -307,6 +307,27 @@ function start (props)
   }
 }
 
+function setVideoBandwith(bandwidth) {
+  if(peerConnection){
+        const senders = peerConnection.getSenders();
+        senders.forEach(sender => {
+          if(sender.track.kind == "video"){
+            const parameters = sender.getParameters();
+            if (!parameters.encodings) {
+              parameters.encodings = [{}];
+            }
+            parameters.encodings[0].maxBitrate = bandwidth * 1000;
+            sender.setParameters(parameters)
+                .then(() => {
+                  //console.log("bandwidth limit ok");
+                })
+                .catch(e => console.error(e));
+            return;
+          }
+        });
+    }
+}
+
 function stop ()
 {
   if (peerConnection != null){
@@ -352,5 +373,6 @@ export default {
   isStarted: isStarted,
   replaceTrack: replaceTrack,
   replaceVideoTrack: replaceVideoTrack,
-  replaceAudioTrack: replaceAudioTrack
+  replaceAudioTrack: replaceAudioTrack,
+  setVideoBandwith: setVideoBandwith
 };
